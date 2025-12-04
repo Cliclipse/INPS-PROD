@@ -15,8 +15,12 @@ public:
     void calcHermit(int n , arma::rowvec zVals);
     void calcLaguerre(int n , int m , arma::rowvec zVals);
     void static printMatrix(arma::mat mat);
-    arma::mat calcSliceN(int n , arma::mat sliceNMoins1 , arma::mat sliceNMoins2); 
 
+private :
+    arma::mat matFact1; // Ca aussi c'est indep de n donc j'en fais des attributs
+    arma::mat matFact2;
+
+    arma::mat calcSliceN(int n , arma::mat sliceNMoins1 , arma::mat sliceNMoins2 , arma::mat mat1 , arma::mat mat2); 
 
 };
 

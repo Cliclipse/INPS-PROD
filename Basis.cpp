@@ -136,7 +136,10 @@ arma::vec Basis::rPart(const arma::vec & r_perps, int m, int n) const
     arma::vec coeff3 = arma::pow(r_perps / br_, abs_m);
 
     arma::vec r_perpstemps = arma::square(r_perps) / (br_ * br_);
-    arma::vec laguerreVals = associatedLaguerre(n, abs_m, r_perpstemps);
+
+    Poly laguerreHelper;
+    laguerreHelper.calcLaguerre(abs_m + 1, n + 1, r_perpstemps);
+    arma::vec laguerreVals = laguerreHelper.laguerre(abs_m, n);
 
     return coeff1 * coeff2 % coeff3 % laguerreVals;
 }
@@ -159,70 +162,10 @@ arma::vec Basis::zPart(const arma::vec & zValues, int n_z) const
 
     const arma::vec gaussian = arma::exp(-arma::square(zValues) / (2.0 * bz_ * bz_));
     const arma::vec normalizedZ = zValues / bz_;
-    const arma::vec hermiteVals = hermitePolynomial(n_z, normalizedZ);
+
+    Poly hermiteHelper;
+    hermiteHelper.calcHermite(n_z, normalizedZ);
+    arma::vec hermiteVals = hermiteHelper.getHermiteRow(n_z);
 
     return coeff * gaussian % hermiteVals;
-}
-
-arma::vec Basis::associatedLaguerre(int n, int alpha, const arma::vec& x)
-{
-    const std::size_t len = x.n_elem;
-    const arma::vec onesVec(len, arma::fill::ones);
-    arma::vec L0 = onesVec;
-
-    if (n == 0)
-    {
-        return L0;
-    }
-
-    const double alpha_d = static_cast<double>(alpha);
-    arma::vec L1 = (1.0 + alpha_d) * onesVec - x;
-    if (n == 1)
-    {
-        return L1;
-    }
-
-    arma::vec prev2 = L0;
-    arma::vec prev1 = L1;
-    arma::vec current(len, arma::fill::zeros);
-
-    for (int k = 2; k <= n; ++k)
-    {
-        const double kd = static_cast<double>(k);
-        const double coeff_a = 2.0 * kd - 1.0 + alpha_d;
-        const double coeff_b = kd - 1.0 + alpha_d;
-        current = ((coeff_a * onesVec - x) % prev1 - coeff_b * prev2) / kd;
-        prev2 = prev1;
-        prev1 = current;
-    }
-
-    return prev1;
-}
-
-arma::vec Basis::hermitePolynomial(int order, const arma::vec& x)
-{
-    const std::size_t len = x.n_elem;
-
-    if (order == 0)
-    {
-        return arma::vec(len, arma::fill::ones);
-    }
-
-    if (order == 1)
-    {
-        return 2.0 * x;
-    }
-
-    arma::vec hm2(len, arma::fill::ones);
-    arma::vec hm1 = 2.0 * x;
-    arma::vec current(len, arma::fill::zeros);
-
-    for (int n = 2; n <= order; ++n)
-    {
-        current = 2.0 * x % hm1 - 2.0 * static_cast<double>(n - 1) * hm2;
-        hm2 = hm1;
-        hm1 = current;
-    }
-
-    return hm1;
 }

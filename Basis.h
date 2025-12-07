@@ -25,8 +25,6 @@ private:
     int compute_mMax(double N, double Q);
     arma::ivec compute_nMax();
     arma::imat compute_nzMax(double N, double Q);
-    static arma::vec associatedLaguerre(int n, int alpha, const arma::vec& x);
-    static arma::vec hermitePolynomial(int order, const arma::vec& x);
 };
 
 #endif // BASIS_H

@@ -15,16 +15,35 @@ INCLUDES := -I. \
 # ----------------------------------------------------------------------------
 # Project layout
 # ----------------------------------------------------------------------------
-TARGET  := libinps.a
+# Toolchain configuration
+# ----------------------------------------------------------------------------
+CXX      := g++
+CXXSTD   := -std=c++20
+WARNINGS := -Wall -Wextra -Wpedantic
+OPTIMIZE := -O2
+CXXFLAGS := $(CXXSTD) $(WARNINGS) $(OPTIMIZE)
+
+INCLUDES := -I. \
+            -I"armadillo-code-15.0.x/armadillo-code-15.0.x/include"
+
+LDLIBS   := -larmadillo
+
+# ----------------------------------------------------------------------------
+# Project layout
+# ----------------------------------------------------------------------------
+TARGET  := main
 OBJ_DIR := build
 
-Z_MINUS_SRC := z_minus.cpp
-HERMIT_SRC  := pr\ akito/Hermit.cpp
-HOS_SRC     := pr\ akito/OneDHOSolution.cpp
+SRCS := \
+	Basis.cpp \
+	Poly.cpp \
+	Hermit.cpp \
+	OneDHOSolution.cpp \
+	rho.cpp \
+	z_minus_r_minus.cpp \
+	Main.cpp
 
-OBJECTS := $(OBJ_DIR)/z_minus.o \
-           $(OBJ_DIR)/Hermit.o \
-           $(OBJ_DIR)/OneDHOSolution.o
+OBJS := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 # ----------------------------------------------------------------------------
 # Primary targets
@@ -32,10 +51,10 @@ OBJECTS := $(OBJ_DIR)/z_minus.o \
 .PHONY: all clean
 
 all: $(TARGET)
-	@echo "Built $(TARGET)"
 
-$(TARGET): $(OBJECTS)
-	$(AR) rcs $@ $^
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) $^ $(LDLIBS) -o $@
+	@echo "Built $(TARGET)"
 
 $(OBJ_DIR):
 	@mkdir -p "$@"
@@ -43,13 +62,8 @@ $(OBJ_DIR):
 # ----------------------------------------------------------------------------
 # Compilation rules
 # ----------------------------------------------------------------------------
-$(OBJ_DIR)/z_minus.o: $(Z_MINUS_SRC) z_minus.h | $(OBJ_DIR)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c "$<" -o "$@"
-
-$(OBJ_DIR)/Hermit.o: $(HERMIT_SRC) pr\ akito/Hermit.h | $(OBJ_DIR)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c "$<" -o "$@"
-
-$(OBJ_DIR)/OneDHOSolution.o: $(HOS_SRC) pr\ akito/OneDHOSolution.h | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
+	@mkdir -p "$(@D)"
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c "$<" -o "$@"
 
 # ----------------------------------------------------------------------------

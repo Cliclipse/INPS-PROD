@@ -9,13 +9,16 @@ public:
     int ordreMax;        
     int nombreValeur;    
 
-    arma::mat hermit; 
-    arma::cube laguerre;
+    arma::mat hermiteTable; 
+    arma::cube laguerreTable;
     
-    void calcHermit(int n , arma::rowvec zVals);
-    void calcLaguerre(int n , int m , arma::rowvec zVals);
+    void calcHermite(int n , const arma::vec& zVals);
+    void calcLaguerre(int mCount , int nCount , const arma::vec& zVals);
     void static printMatrix(arma::mat mat);
     arma::mat calcSliceN(int n , arma::mat sliceNMoins1 , arma::mat sliceNMoins2); 
+    arma::vec hermite(int order) const;
+    arma::vec getHermiteRow(int order) const;
+    arma::vec laguerre(int mOrder, int nOrder) const;
 
 
 };

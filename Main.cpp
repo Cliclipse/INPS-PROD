@@ -1,6 +1,7 @@
 // #include "Poly.h"
 #include "Basis.h"
 #include "Poly.h"
+#include "Rho.h"
 #include "armadillo-code-15.0.x/armadillo-code-15.0.x/include/armadillo"
 
 #include <cassert>

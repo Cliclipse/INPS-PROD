@@ -169,3 +169,10 @@ arma::vec Basis::zPart(const arma::vec & zValues, int n_z) const
 
     return coeff * gaussian % hermiteVals;
 }
+
+arma::mat Basis::basisFunc(int m, int n, int n_z, const arma::vec& zVals, const arma::vec& rVals) const
+{
+    arma::vec radial = rPart(rVals, m, n);
+    arma::vec axial = zPart(zVals, n_z);
+    return radial * axial.t();
+}

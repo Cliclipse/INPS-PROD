@@ -94,6 +94,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a45fdaf4955a805e0f0773391e9f56132" id="r_a45fdaf4955a805e0f0773391e9f56132"><td class="memItemLeft" align="right" valign="top">arma::vec&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasis.html#a45fdaf4955a805e0f0773391e9f56132">zPart</a> (const arma::vec &amp;zValues, int n_z) const</td></tr>
 <tr class="memdesc:a45fdaf4955a805e0f0773391e9f56132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate the axial portion of the basis at the given z values.  <br /></td></tr>
 <tr class="separator:a45fdaf4955a805e0f0773391e9f56132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76e3a2962a9bd5b8596c4d1d1795cfe6" id="r_a76e3a2962a9bd5b8596c4d1d1795cfe6"><td class="memItemLeft" align="right" valign="top">arma::mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasis.html#a76e3a2962a9bd5b8596c4d1d1795cfe6">basisFunc</a> (int m, int n, int n_z, const arma::vec &amp;zVals, const arma::vec &amp;rVals) const</td></tr>
+<tr class="memdesc:a76e3a2962a9bd5b8596c4d1d1795cfe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build the full basis function ψ_{m,n,nz}(r,z).  <br /></td></tr>
+<tr class="separator:a76e3a2962a9bd5b8596c4d1d1795cfe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -162,6 +165,65 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a76e3a2962a9bd5b8596c4d1d1795cfe6" name="a76e3a2962a9bd5b8596c4d1d1795cfe6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76e3a2962a9bd5b8596c4d1d1795cfe6">&#9670;&#160;</a></span>basisFunc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">arma::mat Basis::basisFunc </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n_z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const arma::vec &amp;&#160;</td>
+          <td class="paramname"><em>zVals</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const arma::vec &amp;&#160;</td>
+          <td class="paramname"><em>rVals</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Build the full basis function ψ_{m,n,nz}(r,z). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>Azimuthal quantum number. </td></tr>
+    <tr><td class="paramname">n</td><td>Radial quantum number. </td></tr>
+    <tr><td class="paramname">n_z</td><td>Axial quantum number. </td></tr>
+    <tr><td class="paramname">zVals</td><td>z-axis sampling points. </td></tr>
+    <tr><td class="paramname">rVals</td><td>radial sampling points. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Outer product R(r) * Z(z)^T. </dd></dl>
+
+</div>
+</div>
 <a id="a8d2a0465d1e18c91012183b7b4590a87" name="a8d2a0465d1e18c91012183b7b4590a87"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8d2a0465d1e18c91012183b7b4590a87">&#9670;&#160;</a></span>rPart()</h2>
 
@@ -241,7 +303,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Normalized axial wavefunction samples. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Normalized axial wavefunction sapresmples. </dd></dl>
 
 </div>
 </div>
@@ -258,7 +320,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Basis_8h_source.html#l00042">42</a> of file <a class="el" href="Basis_8h_source.html">Basis.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Basis_8h_source.html#l00053">53</a> of file <a class="el" href="Basis_8h_source.html">Basis.h</a>.</p>
 
 </div>
 </div>
@@ -274,7 +336,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Basis_8h_source.html#l00044">44</a> of file <a class="el" href="Basis_8h_source.html">Basis.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Basis_8h_source.html#l00055">55</a> of file <a class="el" href="Basis_8h_source.html">Basis.h</a>.</p>
 
 </div>
 </div>
@@ -290,7 +352,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Basis_8h_source.html#l00043">43</a> of file <a class="el" href="Basis_8h_source.html">Basis.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Basis_8h_source.html#l00054">54</a> of file <a class="el" href="Basis_8h_source.html">Basis.h</a>.</p>
 
 </div>
 </div>

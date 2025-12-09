@@ -93,29 +93,32 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classBasis.html#a45fdaf4955a805e0f0773391e9f56132">   40</a></span>    arma::vec <a class="code hl_function" href="classBasis.html#a45fdaf4955a805e0f0773391e9f56132">zPart</a>(<span class="keyword">const</span> arma::vec&amp; zValues, <span class="keywordtype">int</span> n_z) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">int</span> mMax;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    arma::ivec nMax;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    arma::imat n_zMax;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">double</span> br_;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">double</span> bz_;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">int</span> N_;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">double</span> Q_;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">static</span> <span class="keywordtype">double</span> compute_Nu(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i, <span class="keywordtype">double</span> N, <span class="keywordtype">double</span> Q);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classBasis.html#a76e3a2962a9bd5b8596c4d1d1795cfe6">   51</a></span>    arma::mat <a class="code hl_function" href="classBasis.html#a76e3a2962a9bd5b8596c4d1d1795cfe6">basisFunc</a>(<span class="keywordtype">int</span> m, <span class="keywordtype">int</span> n, <span class="keywordtype">int</span> n_z, <span class="keyword">const</span> arma::vec&amp; zVals, <span class="keyword">const</span> arma::vec&amp; rVals) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">int</span> mMax;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    arma::ivec nMax;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    arma::imat n_zMax;</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">int</span> compute_mMax(<span class="keywordtype">double</span> N, <span class="keywordtype">double</span> Q);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    arma::ivec compute_nMax();</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    arma::imat compute_nzMax(<span class="keywordtype">double</span> N, <span class="keywordtype">double</span> Q);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>};</div>
-</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">double</span> br_;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">double</span> bz_;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">int</span> N_;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">double</span> Q_;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">static</span> <span class="keywordtype">double</span> compute_Nu(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i, <span class="keywordtype">double</span> N, <span class="keywordtype">double</span> Q);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">int</span> compute_mMax(<span class="keywordtype">double</span> N, <span class="keywordtype">double</span> Q);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#endif </span><span class="comment">// BASIS_H</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    arma::ivec compute_nMax();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    arma::imat compute_nzMax(<span class="keywordtype">double</span> N, <span class="keywordtype">double</span> Q);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>};</div>
+</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#endif </span><span class="comment">// BASIS_H</span></div>
 <div class="ttc" id="aclassBasis_html"><div class="ttname"><a href="classBasis.html">Basis</a></div><div class="ttdoc">Encapsulates the truncated cylindrical harmonic oscillator basis.</div><div class="ttdef"><b>Definition</b> <a href="Basis_8h_source.html#l00013">Basis.h:14</a></div></div>
 <div class="ttc" id="aclassBasis_html_a45fdaf4955a805e0f0773391e9f56132"><div class="ttname"><a href="classBasis.html#a45fdaf4955a805e0f0773391e9f56132">Basis::zPart</a></div><div class="ttdeci">arma::vec zPart(const arma::vec &amp;zValues, int n_z) const</div><div class="ttdoc">Evaluate the axial portion of the basis at the given z values.</div></div>
+<div class="ttc" id="aclassBasis_html_a76e3a2962a9bd5b8596c4d1d1795cfe6"><div class="ttname"><a href="classBasis.html#a76e3a2962a9bd5b8596c4d1d1795cfe6">Basis::basisFunc</a></div><div class="ttdeci">arma::mat basisFunc(int m, int n, int n_z, const arma::vec &amp;zVals, const arma::vec &amp;rVals) const</div><div class="ttdoc">Build the full basis function ψ_{m,n,nz}(r,z).</div></div>
 <div class="ttc" id="aclassBasis_html_a79a154fabf5f316a85fa7ab9038d2fb0"><div class="ttname"><a href="classBasis.html#a79a154fabf5f316a85fa7ab9038d2fb0">Basis::Basis</a></div><div class="ttdeci">Basis(double br, double bz, int N, double Q)</div><div class="ttdoc">Construct the basis descriptors and truncation tables.</div></div>
 <div class="ttc" id="aclassBasis_html_a8d2a0465d1e18c91012183b7b4590a87"><div class="ttname"><a href="classBasis.html#a8d2a0465d1e18c91012183b7b4590a87">Basis::rPart</a></div><div class="ttdeci">arma::vec rPart(const arma::vec &amp;r_perps, int m, int n) const</div><div class="ttdoc">Evaluate the radial portion of the basis at the given radii.</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -38,11 +38,26 @@ public:
      */
     void static printMatrix(arma::mat mat);
 
-private :
-    arma::mat matFact1; // Ca aussi c'est indep de n donc j'en fais des attributs
-    arma::mat matFact2;
+    /**
+     * @brief Placeholder recurrence hook for custom Laguerre slice building.
+     */
+    arma::mat calcSliceN(int n , arma::mat sliceNMoins1 , arma::mat sliceNMoins2); 
 
-    arma::mat calcSliceN(int n , arma::mat sliceNMoins1 , arma::mat sliceNMoins2 , arma::mat mat1 , arma::mat mat2); 
+    /**
+     * @brief Retrieve the cached Hermite polynomial of the requested order.
+     */
+    arma::vec hermite(int order) const;
+
+    /**
+     * @brief Return the cached Hermite row as a column vector.
+     */
+    arma::vec getHermiteRow(int order) const;
+
+    /**
+     * @brief Retrieve the cached Laguerre tube for the (m,n) pair.
+     */
+    arma::vec laguerre(int mOrder, int nOrder) const;
+
 
 };
 

@@ -1,10 +1,14 @@
 // #include "Poly.h"
 #include "Basis.h"
 #include "Poly.h"
-#include "Rho.h"
+#include "Solver.h"
 #include "armadillo-code-15.0.x/armadillo-code-15.0.x/include/armadillo"
 
+#include <algorithm>
 #include <cassert>
+#include <cmath>
+#include <fstream>
+#include <string>
 
 #define TS_ASSERT_EQUALS(lhs, rhs) assert((lhs) == (rhs))
 #define TS_ASSERT(expr) assert((expr))
@@ -115,6 +119,57 @@ int main()
     TS_ASSERT_DELTA(arma::norm(basis.zPart(z, 15) - res15), 0.0, 1e-15);
 
     printf("Basis z-function tests passed!\n");
+
+    // Test #04 - Basis size
+    int basisVectorCount = 0;
+    for (int m = 0; m < basis.mMax; ++m)
+    {
+        for (int n = 0; n < basis.nMax(m); ++n)
+        {
+            for (int n_z = 0; n_z < basis.n_zMax(m, n); ++n_z)
+            {
+                std::cout << "Basis vector " << basisVectorCount
+                          << ": m=" << m
+                          << " n=" << n
+                          << " n_z=" << n_z << std::endl;
+                ++basisVectorCount;
+            }
+        }
+    }
+    TS_ASSERT_EQUALS(basisVectorCount, 374);
+    printf("Basis contains %d vectors as expected.\n", basisVectorCount);
+
+    // Test #05 - Solver versions (simple benchmarks)
+    Solver solver(basis);
+    arma::wall_clock wclock;
+    // Helper lambda to time each solver version on the same grids
+    auto runVersion = [&](const char* label, auto&& fn) {
+        wclock.tic();
+        arma::mat density = fn(r, z);
+        double elapsed = wclock.toc();
+        std::cout << label << " -> " << elapsed << " s; density size: "
+                  << density.n_rows << "x" << density.n_cols << std::endl;
+    };
+
+    runVersion("Solver::version0", [&](const arma::vec& rVals, const arma::vec& zVals) {
+        return solver.version0(rVals, zVals);
+    });
+    runVersion("Solver::version1", [&](const arma::vec& rVals, const arma::vec& zVals) {
+        return solver.version1(rVals, zVals);
+    });
+    runVersion("Solver::version2", [&](const arma::vec& rVals, const arma::vec& zVals) {
+        return solver.version2(rVals, zVals);
+    });
+    runVersion("Solver::version3", [&](const arma::vec& rVals, const arma::vec& zVals) {
+        return solver.version3(rVals, zVals);
+    });
+    runVersion("Solver::version4", [&](const arma::vec& rVals, const arma::vec& zVals) {
+        return solver.version4(rVals, zVals);
+    });
+    runVersion("Solver::version5", [&](const arma::vec& rVals, const arma::vec& zVals) {
+        return solver.version5(rVals, zVals);
+    });
+    
 
     printf("All tests passed!\n");
 
